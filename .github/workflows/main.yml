@@ -1,0 +1,55 @@
+name: Ubuntu
+
+on: 
+
+  workflow_dispatch:
+
+    inputs:
+
+      code:
+
+        description: 'Visit http://remotedesktop.google.com/headless and copy the command after Authentication'
+
+        required: true
+
+      pin:
+
+        description: 'Enter a Pin (more or equal to 6 digits)'
+
+        required: true
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Updates
+
+      run: sudo apt update -y 
+
+    - name: Installing Desktop Environment & Install files
+
+      run: | 
+
+        echo Update: Apt For Better experience 
+
+        sudo apt-get install curl -y
+
+        sudo apt update -y
+
+       curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
+
+      sudo apt-get install speedtest
+
+     
+
+   
+
+   
+
+    - name: Done! You can see the machine in list now.
+
+      run: bash loop.sh
